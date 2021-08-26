@@ -21,7 +21,7 @@ public class JetpackUpgradeRecipe extends ShapedRecipe {
     
     @Override
     public ItemStack craft(CraftingInventory inv) {
-        ItemStack jetpack = inv.getInvStack(4);
+        ItemStack jetpack = inv.getStack(4);
         ItemStack result = this.getOutput().copy();
         
         if (!jetpack.isEmpty() && jetpack.getItem() instanceof JetpackItem) {

@@ -8,7 +8,7 @@ import com.blakebr0.ironjetpacks.util.JetpackUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.options.ParticlesOption;
+import net.minecraft.client.options.ParticlesMode;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,7 +28,7 @@ public class JetpackClientHandler {
                 ItemStack chest = mc.player.getEquippedStack(EquipmentSlot.CHEST);
                 Item item = chest.getItem();
                 if (!chest.isEmpty() && item instanceof JetpackItem && JetpackUtils.isFlying(mc.player)) {
-                    if (ModConfigs.getClient().general.enableJetpackParticles && (mc.options.particles != ParticlesOption.MINIMAL)) {
+                    if (ModConfigs.getClient().general.enableJetpackParticles && (mc.options.particles != ParticlesMode.MINIMAL)) {
                         Jetpack jetpack = ((JetpackItem) item).getJetpack();
                         Vec3d playerPos = mc.player.getPos().add(0, 1.5, 0);
                         

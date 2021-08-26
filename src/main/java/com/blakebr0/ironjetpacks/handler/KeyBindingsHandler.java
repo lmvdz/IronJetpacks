@@ -38,7 +38,7 @@ public class KeyBindingsHandler {
     public static void onClientSetup() {
         keyEngine = create("engine", GLFW.GLFW_KEY_V, IronJetpacks.NAME);
         keyHover = create("hover", GLFW.GLFW_KEY_G, IronJetpacks.NAME);
-        keyDescend = create("descend", InputUtil.UNKNOWN_KEYCODE.getKeyCode(), IronJetpacks.NAME);
+        keyDescend = create("descend", InputUtil.UNKNOWN_KEY.getCode(), IronJetpacks.NAME);
     }
     
     private static KeyBinding create(String id, int key, String category) {
@@ -65,14 +65,14 @@ public class KeyBindingsHandler {
                 NetworkHandler.sendToServer(new ToggleEngineMessage());
                 boolean on = !jetpack.isEngineOn(chest);
                 Text state = on ? ModTooltips.ON.color(Formatting.GREEN) : ModTooltips.OFF.color(Formatting.RED);
-                player.addMessage(ModTooltips.TOGGLE_ENGINE.args(state), true);
+                player.sendMessage(ModTooltips.TOGGLE_ENGINE.args(state), true);
             }
             
             while (keyHover.wasPressed()) {
                 NetworkHandler.sendToServer(new ToggleHoverMessage());
                 boolean on = !jetpack.isHovering(chest);
                 Text state = on ? ModTooltips.ON.color(Formatting.GREEN) : ModTooltips.OFF.color(Formatting.RED);
-                player.addMessage(ModTooltips.TOGGLE_HOVER.args(state), true);
+                player.sendMessage(ModTooltips.TOGGLE_HOVER.args(state), true);
             }
         }
     }
@@ -88,7 +88,7 @@ public class KeyBindingsHandler {
             return;
         
         boolean upNow = settings.keyJump.isPressed();
-        boolean downNow = keyDescend.isNotBound() ? settings.keySneak.isPressed() : keyDescend.isPressed();
+        boolean downNow = keyDescend.isUnbound() ? settings.keySneak.isPressed() : keyDescend.isPressed();
         boolean forwardsNow = settings.keyForward.isPressed();
         boolean backwardsNow = settings.keyBack.isPressed();
         boolean leftNow = settings.keyLeft.isPressed();

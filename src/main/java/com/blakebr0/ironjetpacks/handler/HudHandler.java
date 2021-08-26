@@ -48,9 +48,9 @@ public class HudHandler {
                         String hover = Formatting.GRAY + "H: " + HudHelper.getOn(jetpack.isHovering(chest));
                         
                         if (pos.side == 1) {
-                            mc.textRenderer.drawWithShadow(matrices, fuel, pos.x - 8 - mc.textRenderer.getStringWidth(fuel), pos.y - 21, 16383998);
-                            mc.textRenderer.drawWithShadow(matrices, engine, pos.x - 8 - mc.textRenderer.getStringWidth(engine), pos.y + 4, 16383998);
-                            mc.textRenderer.drawWithShadow(matrices, hover, pos.x - 8 - mc.textRenderer.getStringWidth(hover), pos.y + 14, 16383998);
+                            mc.textRenderer.drawWithShadow(matrices, fuel, pos.x - 8 - mc.textRenderer.getWidth(fuel), pos.y - 21, 16383998);
+                            mc.textRenderer.drawWithShadow(matrices, engine, pos.x - 8 - mc.textRenderer.getWidth(engine), pos.y + 4, 16383998);
+                            mc.textRenderer.drawWithShadow(matrices, hover, pos.x - 8 - mc.textRenderer.getWidth(hover), pos.y + 14, 16383998);
                         } else {
                             mc.textRenderer.drawWithShadow(matrices, fuel, pos.x + 6, pos.y - 21, 16383998);
                             mc.textRenderer.drawWithShadow(matrices, engine, pos.x + 6, pos.y + 4, 16383998);

@@ -30,7 +30,7 @@ public class JetpackSound extends MovingSoundInstance {
     
     @Override
     public void tick() {
-        BlockPos pos = this.player.getSenseCenterPos();
+        BlockPos pos = this.player.getBlockPos();
         this.x = (float) pos.getX();
         this.y = (float) pos.getY() - 10;
         this.z = (float) pos.getZ();
