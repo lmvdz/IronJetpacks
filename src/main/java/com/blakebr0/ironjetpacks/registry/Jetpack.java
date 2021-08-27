@@ -3,6 +3,7 @@ package com.blakebr0.ironjetpacks.registry;
 import com.blakebr0.ironjetpacks.IronJetpacks;
 import com.blakebr0.ironjetpacks.item.ComponentItem;
 import com.blakebr0.ironjetpacks.item.JetpackItem;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.recipe.Ingredient;
@@ -43,7 +44,7 @@ public class Jetpack {
         this.armorPoints = armorPoints;
         this.enchantablilty = enchantability;
         this.craftingMaterialString = craftingMaterialString;
-        this.item = new JetpackItem(this, new Item.Settings().group(IronJetpacks.ITEM_GROUP));
+        this.item = new JetpackItem(this, new FabricItemSettings().group(IronJetpacks.ITEM_GROUP));
     }
     
     public Jetpack setStats(double capacity, double usage, double speedVert, double accelVert, double speedSide, double speedHover, double speedHoverSlow, double sprintSpeed, double sprintFuel) {
