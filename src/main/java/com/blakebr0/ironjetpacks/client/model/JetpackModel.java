@@ -54,8 +54,8 @@ public class JetpackModel extends BipedEntityModel<LivingEntity> {
     }
 
     @Override
-    public void setAngles(LivingEntity entity, float f1, float f2, float f3, float netHeadYaw, float headPitch) {
-        super.setAngles(entity, f1, f2, f3, netHeadYaw, headPitch);
+    public void setAngles(LivingEntity entity, float limbAngle, float limbDistance, float animationProgress, float netHeadYaw, float headPitch) {
+        super.setAngles(entity, limbAngle, limbDistance, animationProgress, netHeadYaw, headPitch);
 
         if (this.jetpack.getJetpack().creative) {
             this.resetEnergyBars();
@@ -67,6 +67,8 @@ public class JetpackModel extends BipedEntityModel<LivingEntity> {
             double stored = energy.getEnergy() / energy.getMaxStored();
 
             int state = 0;
+            state = (int) Math.min(Math.max(0, Math.floor(stored * 5)), 5);
+            System.out.println(state);
             if (stored > 0.8) {
                 state = 5;
             } else if (stored > 0.6) {

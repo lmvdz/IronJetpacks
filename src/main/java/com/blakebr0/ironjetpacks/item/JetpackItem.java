@@ -57,6 +57,8 @@ public class JetpackItem extends DyeableArmorItem implements Colored, DyeableIte
         model.rightArm.visible = slot == EquipmentSlot.CHEST;
         model.head.visible = slot == EquipmentSlot.HEAD;
 
+        model.setAngles(entity, 0F, 0F, 0F, model.head.yaw, model.head.pitch);
+
         ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, getArmorModel(), new Identifier(getArmorTexture(slot.equals(EquipmentSlot.LEGS))));
     }
 
@@ -64,7 +66,7 @@ public class JetpackItem extends DyeableArmorItem implements Colored, DyeableIte
     public JetpackItem(Jetpack jetpack, Settings settings) {
         super(JetpackUtils.makeArmorMaterial(jetpack), EquipmentSlot.CHEST, settings.maxDamage(0).rarity(jetpack.rarity));
         this.jetpack = jetpack;
-        ArmorRenderer.register(this::render, this);
+        ArmorRenderer.register(this, this);
     }
 
     @Override
@@ -82,8 +84,7 @@ public class JetpackItem extends DyeableArmorItem implements Colored, DyeableIte
     public void tickArmor(ItemStack stack, PlayerEntity player) {
         ItemStack chest = player.getEquippedStack(EquipmentSlot.CHEST);
         Item item = chest.getItem();
-        if (!chest.isEmpty() && item instanceof JetpackItem) {
-            JetpackItem jetpack = (JetpackItem) item;
+        if (!chest.isEmpty() && item instanceof JetpackItem jetpack) {
             if (jetpack.isEngineOn(chest)) {
                 boolean hover = jetpack.isHovering(chest);
                 if (InputHandler.isHoldingUp(player) || hover && !player.isOnGround()) {
@@ -294,11 +295,11 @@ public class JetpackItem extends DyeableArmorItem implements Colored, DyeableIte
         return tag != null && tag.contains("Engine") && tag.getBoolean("Engine");
     }
 
-    public boolean toggleEngine(ItemStack stack) {
+    public void toggleEngine(ItemStack stack) {
         NbtCompound tag = stack.getOrCreateNbt();
         boolean current = tag.contains("Engine") && tag.getBoolean("Engine");
         tag.putBoolean("Engine", !current);
-        return !current;
+        stack.setNbt(tag);
     }
 
     public boolean isHovering(ItemStack stack) {
@@ -306,11 +307,11 @@ public class JetpackItem extends DyeableArmorItem implements Colored, DyeableIte
         return tag != null && tag.contains("Hover") && tag.getBoolean("Hover");
     }
 
-    public boolean toggleHover(ItemStack stack) {
+    public void toggleHover(ItemStack stack) {
         NbtCompound tag = stack.getOrCreateNbt();
         boolean current = tag.contains("Hover") && tag.getBoolean("Hover");
         tag.putBoolean("Hover", !current);
-        return !current;
+        stack.setNbt(tag);
     }
 
     private void fly(PlayerEntity player, double y) {

@@ -5,6 +5,7 @@ import com.blakebr0.ironjetpacks.client.util.HudHelper;
 import com.blakebr0.ironjetpacks.client.util.HudHelper.HudPos;
 import com.blakebr0.ironjetpacks.config.ModConfigs;
 import com.blakebr0.ironjetpacks.item.JetpackItem;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -33,7 +34,8 @@ public class HudHandler {
                     if (pos != null) {
                         int xPos = (int) (pos.x / 0.33) - 18;
                         int yPos = (int) (pos.y / 0.33) - 78;
-                        
+
+                        RenderSystem.setShaderTexture(0, HUD_TEXTURE);
                         mc.getTextureManager().bindTexture(HUD_TEXTURE);
                         
                         matrices.push();
