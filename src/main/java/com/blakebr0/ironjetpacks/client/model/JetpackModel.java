@@ -67,8 +67,8 @@ public class JetpackModel extends BipedEntityModel<LivingEntity> {
             double stored = energy.getEnergy() / energy.getMaxStored();
 
             int state = 0;
-            state = (int) Math.min(Math.max(0, Math.floor(stored * 5)), 5);
-            System.out.println(state);
+            state = (int) Math.min(Math.max(0, Math.ceil(stored * 5)), 5);
+            System.out.println(state + " " + stored);
             if (stored > 0.8) {
                 state = 5;
             } else if (stored > 0.6) {
