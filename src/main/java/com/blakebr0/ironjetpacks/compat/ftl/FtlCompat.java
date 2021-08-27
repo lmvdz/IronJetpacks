@@ -10,7 +10,7 @@ public class FtlCompat {
         for (Jetpack jetpack : JetpackRegistry.getInstance().getAllJetpacks()) {
             double maxInput = jetpack.item.getMaxInput(null);
             double maxOutput = jetpack.item.getMaxOutput(null);
-            EnergyApi.ITEM.register(SimpleItemEnergyIo.getProvider(jetpack.capacity, maxInput, maxOutput), jetpack.item);
+            EnergyApi.ITEM.registerForItems(SimpleItemEnergyIo.getProvider(jetpack.capacity, maxInput, maxOutput), jetpack.item);
         }
     }
 }

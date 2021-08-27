@@ -6,7 +6,7 @@ import com.blakebr0.ironjetpacks.mixins.ShapedRecipeAccessor;
 import com.google.gson.JsonObject;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
@@ -25,9 +25,9 @@ public class JetpackUpgradeRecipe extends ShapedRecipe {
         ItemStack result = this.getOutput().copy();
         
         if (!jetpack.isEmpty() && jetpack.getItem() instanceof JetpackItem) {
-            CompoundTag tag = jetpack.getTag();
+            NbtCompound tag = jetpack.getNbt();
             if (tag != null) {
-                result.setTag(tag);
+                result.setNbt(tag);
                 return result;
             }
         }
@@ -44,7 +44,7 @@ public class JetpackUpgradeRecipe extends ShapedRecipe {
         @Override
         public JetpackUpgradeRecipe read(Identifier recipeId, JsonObject json) {
             ShapedRecipe recipe = RecipeSerializer.SHAPED.read(recipeId, json);
-            return new JetpackUpgradeRecipe(recipeId, ((ShapedRecipeAccessor) recipe).getGroup(), recipe.getWidth(), recipe.getHeight(), recipe.getPreviewInputs(), recipe.getOutput());
+            return new JetpackUpgradeRecipe(recipeId, ((ShapedRecipeAccessor) recipe).getGroup(), recipe.getWidth(), recipe.getHeight(), recipe.getIngredients(), recipe.getOutput());
         }
         
         @Override
@@ -68,7 +68,7 @@ public class JetpackUpgradeRecipe extends ShapedRecipe {
             buffer.writeVarInt(recipe.getHeight());
             buffer.writeString(((ShapedRecipeAccessor) recipe).getGroup());
             
-            for (Ingredient ingredient : recipe.getPreviewInputs()) {
+            for (Ingredient ingredient : recipe.getIngredients()) {
                 ingredient.write(buffer);
             }
             
