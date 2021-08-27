@@ -2,9 +2,9 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.blakebr0.ironjetpacks.mixins",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "MixinRecipeManager", "ServerPlayNetworkHandlerAccessor", "ShapedRecipeAccessor"
+    "MixinRecipeManager", "ServerPlayNetworkHandlerAccessor", "ShapedRecipeAccessor", "ArmorFeatureRendererMixin", "PlayerInventoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
