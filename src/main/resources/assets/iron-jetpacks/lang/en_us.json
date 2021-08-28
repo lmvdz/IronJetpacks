@@ -13,9 +13,9 @@
   "item.iron-jetpacks.capacitor": "%s Capacitor",
   "item.iron-jetpacks.jetpack": "%s Jetpack",
 
-  "keybind.iron-jetpacks.engine": "Toggle Engine",
-  "keybind.iron-jetpacks.hover": "Toggle Hover Mode",
-  "keybind.iron-jetpacks.descend": "Descend",
+  "key.iron-jetpacks.engine": "Toggle Engine",
+  "key.iron-jetpacks.hover": "Toggle Hover Mode",
+  "key.iron-jetpacks.descend": "Descend",
 
   "subtitle.iron-jetpacks.jetpack": "Jetpack",
 
