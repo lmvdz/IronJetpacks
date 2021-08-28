@@ -10,8 +10,8 @@ import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.fabric.api.event.client.ClientTickCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.integrated.IntegratedServer;
@@ -21,9 +21,9 @@ import java.util.function.Supplier;
 @Environment(EnvType.CLIENT)
 public class IronJetpacksClient {
     public static void onInitializeClient() {
-        ClientTickCallback.EVENT.register(KeyBindingsHandler::onClientTick);
+        ClientTickEvents.END_CLIENT_TICK.register(KeyBindingsHandler::onClientTick);
         HudRenderCallback.EVENT.register(HudHandler::onRenderGameOverlay);
-        ClientTickCallback.EVENT.register(JetpackClientHandler::onClientTick);
+        ClientTickEvents.END_CLIENT_TICK.register(JetpackClientHandler::onClientTick);
         
         KeyBindingsHandler.onClientSetup();
         ColorHandler.onClientSetup();
