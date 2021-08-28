@@ -13,9 +13,9 @@
   "item.iron-jetpacks.capacitor": "%s電容器",
   "item.iron-jetpacks.jetpack": "%s噴氣背包",
 
-  "keybind.iron-jetpacks.engine": "開關引擎",
-  "keybind.iron-jetpacks.hover": "開關懸浮模式",
-  "keybind.iron-jetpacks.descend": "降臨",
+  "key.iron-jetpacks.engine": "開關引擎",
+  "key.iron-jetpacks.hover": "開關懸浮模式",
+  "key.iron-jetpacks.descend": "降臨",
 
   "subtitle.iron-jetpacks.jetpack": "噴氣背包",
 
